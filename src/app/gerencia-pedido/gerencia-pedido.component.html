@@ -1,0 +1,28 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <span>Atualizar Pedido</span>
+  </mat-toolbar>
+</div>
+
+<ng-container *ngIf="pedido">
+  <div class="pt pb">
+    <div class="info"><strong>Número do pedido: </strong>{{pedido.id}}</div>
+    <div class="info"><strong>Data e hora: </strong>{{pedido.dataHora | date: "short"}}</div>
+    <div class="info"><strong>Situação: </strong>
+      <select matNativeControl required [(ngModel)]="pedido.situacao">
+        <option>Aguardando</option>
+        <option>Em preparação</option>
+        <option>Saiu para entrega</option>
+        <option>Entregue</option>
+      </select>
+    </div>
+  </div>
+
+  <app-lista-itens-pedido [itens]="pedido.itens"></app-lista-itens-pedido>
+</ng-container>
+
+<mat-toolbar>
+  <a routerLink="/pedidos" mat-raised-button>Voltar para a lista</a>
+  <span class="flex-1"></span>
+  <button mat-raised-button color="accent" (click)="atualizaPedido()">Salvar</button>
+</mat-toolbar>

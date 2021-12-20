@@ -1,0 +1,14 @@
+<div class="header">
+    <mat-toolbar color="primary">
+        <span>Gerenciar pedidos</span>
+    </mat-toolbar>
+</div>
+
+<mat-nav-list>
+    <ng-container *ngFor="let pedido of pedidos">
+        <a mat-list-item [routerLink]="['/pedidos', pedido.id, 'editar']">
+            <span class="flex-1">Pedido: {{pedido.id}}</span>
+            <span>{{pedido.situacao}}</span>
+        </a>
+    </ng-container>
+</mat-nav-list>

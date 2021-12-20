@@ -1,0 +1,20 @@
+<div class="header">
+    <mat-toolbar color="primary">
+        <span>Acompanhe seu pedido</span>
+    </mat-toolbar>
+</div>
+
+<ng-container *ngIf='pedido'>
+    <div class="pt pb">
+        <div class="info"><strong>Número do pedido: </strong>{{pedido.id}}</div>
+        <div class="info"><strong>Data e hora do pedido: </strong>{{pedido.dataHora | date: "short"}}</div>
+        <div class="info"><strong>Situação: </strong>{{pedido.situacao}}</div>
+    </div>
+
+    <app-lista-itens-pedido [itens]="pedido.itens"></app-lista-itens-pedido>
+</ng-container>
+
+<mat-toolbar>
+    <a routerLink="/cardapio" mat-raised-button>Voltar para cardápio</a>
+    <span class="ml"></span>
+</mat-toolbar>
