@@ -51,7 +51,7 @@ registerLocaleData(localePt);
     FormsModule,
     MatSelectModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
