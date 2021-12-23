@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Produto } from '../produto';
 import { IPedido } from '../pedido';
 
-const urlBase = 'http://app-ngfood.herokuapp.com';
+const urlBase = 'https://app-ngfood.herokuapp.com';
 
 @Injectable({
   providedIn: 'root'
