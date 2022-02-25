@@ -1,0 +1,25 @@
+﻿<div class="header">
+    <mat-toolbar color="primary">
+        <span>Login</span>
+    </mat-toolbar>
+</div>
+<form  [formGroup]="loginForm" class="form" (ngSubmit)="logar()">
+    <mat-form-field class="we" appearance="fill">
+      <mat-label>Informe o e-mail</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="we" appearance="fill">
+      <mat-label>Informe a senha</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="senha" required>
+      <mat-error *ngIf="senha.invalid">{{getErrorMessageSenha()}}</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="actions">
+      <button type="submit" mat-raised-button class="we" color="primary" [disabled]="loginForm.invalid">Entrar</button>
+      <a routerLink="/cliente/cadastrar" mat-raised-button class="we">Criar conta</a>
+    </div>
+</form>
