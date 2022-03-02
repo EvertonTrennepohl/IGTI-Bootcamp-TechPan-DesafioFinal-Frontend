@@ -23,9 +23,7 @@ export class LoginComponent {
    }
 
   logar(): void {
-    this.loginService.logar(this.loginForm.value).subscribe(cliente => {
-      console.log(cliente);
-    })
+    this.loginService.logar(this.loginForm.value);
   }
 
   getErrorMessageEmail() {
