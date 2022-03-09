@@ -27,6 +27,7 @@ import { ListaItensPedidoComponent } from './lista-itens-pedido/lista-itens-pedi
 import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
 import { PedidoRealizadoComponent } from './pedido-realizado/pedido-realizado.component';
 import { LoginComponent } from './login/login.component';
+import { authInterceptorProviders } from './helpers/auth.interceptor'
 
 registerLocaleData(localePt);
 
@@ -59,7 +60,7 @@ registerLocaleData(localePt);
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
