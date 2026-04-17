@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import { AuthService } from '../authentication/auth.service';
 import { TokenStorageService } from '../authentication/token-storage.service';
@@ -20,6 +22,7 @@ export class LoginComponent {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  headers: string[] = [];
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) {
     this.loginForm.addControl('email', this.email);
@@ -30,22 +33,25 @@ export class LoginComponent {
    }
 
   logar(): void {
-    this.authService.login(this.loginForm.value).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.Authorization);
-        console.info(data.Authorization);
-        console.log('isLoggedIn' + this.isLoggedIn);
-        //this.tokenStorage.saveCliente(data);
+    this.authService.login(this.loginForm.value)
+    .subscribe(resp => {
+      const keys = resp.headers.keys();
+      this.headers = keys.map(key =>
+        `${key}: ${resp.headers.get(key)}`);
+        console.log('Body ' + resp.body);
+    });
+      console.log(this.headers);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.router.navigate(["/cardapio"]);
-      },
+  /*    }),
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
         console.log(err.error.message)
       }
     );
+    */
   }
 
   getErrorMessageEmail() {
